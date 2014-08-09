@@ -21,6 +21,7 @@
   "homepage": "https://github.com/flarnie/flux-of-life",
   "dependencies": {
     "es6-loader": "^0.2.0",
+    "jsx-loader": "^0.11.0",
     "webpack": "^1.3.3-beta1"
   }
 }
