@@ -1,0 +1,31 @@
+// Colors
+
+$gray-base: #78746b;
+$black-base: #2e2a22;
+$brown-base: #3b2a08;
+$ivory-base: #c1bdb5;
+$white-base: #fff;
+
+.ecosystem__grid {
+  margin: 0 auto;
+  width: 800px;
+}
+
+.ecosystem__grid__tile {
+  background-color: $gray-base;
+  border: solid 1px $black-base;
+  float: left;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+
+  &:hover {
+    background-color: $white-base;
+  }
+}
+
+.ecosystem__grid__tile--alive {
+  background-color: $ivory-base;
+}
