@@ -8,33 +8,42 @@ var React = require('react');
 var EcosystemGrid = React.createClass({
   getDefaultProps: function() {
     return {
-      size: 40 // 40x40
+      size: 40
     };
   },
 
-  _isAlive: function(x, y) {
-    // TODO: grab this data from the object in state
-    if (x === 1 && y === 3) {
-      return true;
-    }
-    return false;
+  getInitialState: function() {
+    return { livesRecord: this._setLives() };
+  },
+
+  _setLives: function() {
+    var livesRecord = {};
+    this.props.game.lives.forEach(function (lifeCoords) {
+      var x = lifeCoords.x_coord,
+          y = lifeCoords.y_coord,
+          coords = `${x},${y}`;
+
+      livesRecord[coords] = true;
+    });
+    return livesRecord;
   },
 
   _renderRow: function(y) {
     var tiles = [];
     for (var x = 0, innerLen = this.props.size; x < innerLen; x ++) {
       var tileClasses = ['ecosystem__grid__tile'];
-      if (this._isAlive(x, y)) {
+      var coords = [x, y].join(',');
+      if (this.state.livesRecord[coords]) {
         tileClasses.push('ecosystem__grid__tile--alive');
       }
-      // TODO: why won't jsHint stop flagging ES6 string templates as wrong?
       var tileKey = String(x) +  '-' + String(y);
-      // TODO: get jsxhint running so jshints tops complaining
       tiles.push((<div className={tileClasses.join(' ')} key={tileKey} />));
     }
 
     return (
-      <div className="ecosystem__grid__row clearfix">
+      <div
+        key={`row-${y}`}
+        className="ecosystem__grid__row clearfix">
         {tiles}
       </div>
     );
@@ -50,6 +59,7 @@ var EcosystemGrid = React.createClass({
   },
 
   render: function() {
+    this._setLives();
     return (
       <div className="ecosystem__grid">
         {this._renderTiles()}
