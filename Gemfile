@@ -16,6 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+# Access Rails url helpers from JS
+gem 'js-routes'
 # React rails: https://github.com/reactjs/react-rails
 gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
 # bundle exec rake doc:rails generates the API under doc/api.

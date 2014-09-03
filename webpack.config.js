@@ -34,7 +34,11 @@ module.exports = {
   },
 
   // If you have global vars, specify them here
-  externals: { react: 'var React' },
+  externals: {
+    react: 'var React',
+    jquery: 'var jQuery',
+    routes: 'var Routes'
+  },
 
   // This turns on sourcemaps.
   // @see http://webpack.github.io/docs/configuration.html#devtool
