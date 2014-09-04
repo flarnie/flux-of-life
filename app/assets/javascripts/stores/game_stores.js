@@ -6,6 +6,14 @@ var Dispatcher = require('flux').Dispatcher,
 var _games = {};
 
 /**
+ * For when we get fresh game collection data from server
+ * @param {object} games
+ */
+var receiveGames = function(games) {
+  _games = games;
+};
+
+/**
  * updates the game with the matching id
  * or saves the game under that id
  * @param {object} attributes
@@ -23,12 +31,16 @@ var GamesStore = merge(EventEmitter.prototype, {
     return _games;
   }
 
+  emitChange: function() {
+    this.emit(GameConstants.CHANGE_EVENT);
+  },
+
   /**
    * Add a callback to the CHANGE event
    * @param {function} callback
    */
   addChangeListener: function(callback) {
-    this.on(Constants.CHANGE_EVENT, callback);
+    this.on(GameConstants.CHANGE_EVENT, callback);
   },
 
 
@@ -37,8 +49,34 @@ var GamesStore = merge(EventEmitter.prototype, {
    * @param {function} callback
    */
   removeChangeListener: function(callback) {
-    this.off(Constants.CHANGE_EVENT, callback);
+    this.off(GameConstants.CHANGE_EVENT, callback);
   }
+});
+
+/**
+ * Register callback that handles each type of update
+ */
+Dispatcher.register(function(payload) {
+  var action = payload.action;
+
+  switch(action.actionType) {
+    case GameConstants.UPDATE:
+
+    break;
+    case GameConstants.RECEIVE:
+      debugger;
+    // what do we pass to receiveGames?
+    // action.attributes?
+    // receiveGames(...);
+    break;
+    default:
+      return true;
+  }
+
+  // If a data change was triggered, we emit a change event to the view.
+  GameStore.emitChange();
+
+  return true; // No errors; needed for Promise in Dispatcher.
 });
 
 module.exports = GamesStore;
