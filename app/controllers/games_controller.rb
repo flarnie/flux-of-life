@@ -1,7 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
   # GET /games/1
-  # GET /games/1.json
   def show
   end
 
@@ -54,14 +53,8 @@ class GamesController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_game
-      @game = Game.includes(:lives).find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def game_params
-      params.require(:game).permit(:name, :lives)
-    end
+  # GET /games/
+  def index
+    @games = Game.all
+  end
 end
