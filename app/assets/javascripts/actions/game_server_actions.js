@@ -1,4 +1,4 @@
-var Dispatcher = require('flux').Dispatcher,
+var AppDispatcher = require('../dispatcher/app_dispatcher'),
     GameConstants = require('../constants/game_constants');
 
 var GameServerActions = {
@@ -7,9 +7,7 @@ var GameServerActions = {
    * @param {object} allGameAttributes
    */
   receiveAllGames: function(allGameAttributes) {
-    // TODO: implement handleServerAction on an AppDispatcher that extends
-    // Dispatcher
-    Dispatcher.handleServerAction({
+    AppDispatcher.handleServerAction({
       actionType: GameConstants.RECEIVE,
       attributes: allGameAttributes
     });

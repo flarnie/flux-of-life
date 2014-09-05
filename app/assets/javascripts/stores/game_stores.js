@@ -1,4 +1,4 @@
-var Dispatcher = require('flux').Dispatcher,
+var AppDispatcher = require('../dispatcher/app_dispatcher'),
     EventEmitter = require('events').EventEmitter,
     GameConstants = require('../constants/game_constants'),
     merge = require('react/lib/merge');
@@ -56,7 +56,7 @@ var GamesStore = merge(EventEmitter.prototype, {
 /**
  * Register callback that handles each type of update
  */
-Dispatcher.register(function(payload) {
+AppDispatcher.register(function(payload) {
   var action = payload.action;
 
   switch(action.actionType) {
@@ -76,7 +76,7 @@ Dispatcher.register(function(payload) {
   // If a data change was triggered, we emit a change event to the view.
   GameStore.emitChange();
 
-  return true; // No errors; needed for Promise in Dispatcher.
+  return true; // No errors; needed for Promise in AppDispatcher.
 });
 
 module.exports = GamesStore;

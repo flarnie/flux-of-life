@@ -21,7 +21,7 @@ var AppDispatcher = merge(Dispatcher.prototype, {
    * Handles data coming from the view
    * @param {object} action
    */
-  handleServerAction: function(action) {
+  handleViewAction: function(action) {
     this.dispatch({
       source: 'VIEW_ACTION',
       action: action
