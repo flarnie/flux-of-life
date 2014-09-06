@@ -6,10 +6,28 @@ var AppDispatcher = require('../dispatcher/app_dispatcher'),
 var _games = {};
 
 /**
+ * Processing the games array returned by the server
+ * @param {array} games
+ * @return {object} games mapped into object with id as key
+ */
+var processGames = function(games) {
+  var gamesObj = {};
+  games.forEach((game) => {
+    gamesObj[game.id] = game;
+  });
+
+  return gamesObj;
+};
+
+/**
  * For when we get fresh game collection data from server
- * @param {object} games
+ * @param {object|array} games
  */
 var receiveGames = function(games) {
+  // Games will be returned as an array from the server
+  if (Array.isArray(games)) {
+    games = processGames(games);
+  }
   _games = games;
 };
 
@@ -74,9 +92,7 @@ AppDispatcher.register(function(payload) {
 
     break;
     case GameConstants.RECEIVE:
-    // what do we pass to receiveGames?
-    // action.attributes?
-    // receiveGames(...);
+      receiveGames(action.attributes);
     break;
     default:
       return true;
