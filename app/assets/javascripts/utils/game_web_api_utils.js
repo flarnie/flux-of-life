@@ -4,11 +4,12 @@ var $ = require('jquery'),
 
 var GameWebAPIUtils = {
   getAllGames: function() {
-    // TODO: replace .done with .success and .fail
     $.ajax({
       url: Routes.games_path()
-    }).done(function(data, textStatus) {
+    }).success(function(data, textStatus) {
       GameServerActions.receiveAllGames(data);
+    }).fail(function(data, textStatus) {
+      debugger;
     });
   }
 };

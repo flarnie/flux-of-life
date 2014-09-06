@@ -26,7 +26,7 @@ var updateGame = function(attributes) {
   _games[attributes.id] = attributes;
 };
 
-var GamesStore = merge(EventEmitter.prototype, {
+var GameStores = merge(EventEmitter.prototype, {
   /**
    * @return {object}
    */
@@ -69,13 +69,11 @@ var GamesStore = merge(EventEmitter.prototype, {
  */
 AppDispatcher.register(function(payload) {
   var action = payload.action;
-
   switch(action.actionType) {
     case GameConstants.UPDATE:
 
     break;
     case GameConstants.RECEIVE:
-      debugger;
     // what do we pass to receiveGames?
     // action.attributes?
     // receiveGames(...);
@@ -85,9 +83,9 @@ AppDispatcher.register(function(payload) {
   }
 
   // If a data change was triggered, we emit a change event to the view.
-  GameStore.emitChange();
+  GameStores.emitChange();
 
   return true; // No errors; needed for Promise in AppDispatcher.
 });
 
-module.exports = GamesStore;
+module.exports = GameStores;
