@@ -1,25 +1,17 @@
-// Colors
-
-$gray-base: #78746b;
-$black-base: #2e2a22;
-$brown-base: #3b2a08;
-$ivory-base: #c1bdb5;
-$white-base: #fff;
-
 .ecosystem__grid {
   margin: 0 auto;
-  width: 800px;
+  width: $grid-side-width;
 }
 
 .ecosystem__grid__tile {
   background-color: $gray-base;
   border: solid 1px $black-base;
   float: left;
-  height: 20px;
-  width: 20px;
+  height: $grid-tile-width;
+  width: $grid-tile-width;
   display: inline-block;
-  -webkit-transition: background-color .2s;
-  transition: background-color .2s;
+  -webkit-transition: background-color $speed-medium;
+  transition: background-color $speed-medium;
 
   &:hover {
     background-color: $white-base;
