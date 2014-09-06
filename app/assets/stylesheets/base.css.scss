@@ -35,3 +35,22 @@ del {
     clear: both;
   }
 }
+
+@keyframes fade {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: .5;
+  }
+}
+
+%animation-fade {
+  animation-direction: alternate;
+  animation-duration: $speed-slow;
+  animation-iteration-count: infinite;
+  animation-name: fade;
+  animation-timing-function: ease-in-out;
+  opacity: 1;
+}
