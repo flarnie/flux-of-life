@@ -4,6 +4,7 @@ var AppDispatcher = require('../dispatcher/app_dispatcher'),
     merge = require('react/lib/merge');
 
 var _games = {};
+var _currentGame = 1 // Defaults to first game, which is seeded in db.
 
 /**
  * Processing the games array returned by the server
@@ -42,6 +43,14 @@ var updateGame = function(attributes) {
     attributes = merge(prevAttrs, attributes);
   }
   _games[attributes.id] = attributes;
+};
+
+/**
+ * updates the currentGame, switching to a different one
+ * @param {number} currentGameId id of the new currentGame
+ */
+var updateCurrentGame = function(currentGameId) {
+  _currentGame = currentGameId;
 };
 
 var GameStores = merge(EventEmitter.prototype, {
@@ -94,6 +103,9 @@ AppDispatcher.register(function(payload) {
     case GameConstants.RECEIVE:
       receiveGames(action.attributes);
     break;
+    case GameConstants.CURRENT_GAME.UPDATE:
+      updateCurrentGame(action.attributes);
+      break;
     default:
       return true;
   }
