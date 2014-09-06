@@ -2,6 +2,7 @@
 var EcosystemGrid = require('./ecosystem_grid.js.jsx'),
     GameStores = require('../stores/game_stores'),
     GameWebAPIUtils = require('../utils/game_web_api_utils'),
+    GridLoadingScreen = require('./grid_loading_screen.js.jsx'),
     React = require('react');
 
 /**
@@ -41,7 +42,7 @@ var LifeApp = React.createClass({
     if (currentGame) {
       return (<EcosystemGrid game={currentGame} />);
     } else {
-      return (<h2>Choose a Game!</h2>);
+      return (<GridLoadingScreen />);
     }
   }
 });
