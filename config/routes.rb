@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :games, only: [:show, :index, :create, :edit, :update, :delete]
+  resources :games, only: :index
 
   namespace :api do
     resources :games, only: [:show, :index]
   end
 
-  root 'games#new'
+  root 'games#index'
 end
