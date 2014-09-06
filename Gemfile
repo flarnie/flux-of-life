@@ -38,6 +38,7 @@ gem 'spring',        group: :development
 # Use debugger
 gem 'debugger', group: [:development, :test]
 
+gem 'autoprefixer-rails'
 
 group :development, :test do
   gem "rspec-rails"
