@@ -37,13 +37,29 @@ var LifeApp = React.createClass({
   /**
    * @return {object}
    */
-  render: function() {
+  _renderGame: function() {
     var currentGame = GameStores.find(this.props.gameId);
     if (currentGame) {
       return (<EcosystemGrid game={currentGame} />);
     } else {
       return (<GridLoadingScreen />);
     }
+  },
+
+  /**
+   * @return {object}
+   */
+  render: function() {
+    return (
+      <div className="life-app clearfix">
+        <main className="life-app--primary">
+          {this._renderGame()}
+        </main>
+        <div className="life-app--secondary">
+          <p>Game Index Will Go Here.</p>
+        </div>
+      </div>
+    );
   }
 });
 
