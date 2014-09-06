@@ -1,1 +1,1 @@
-json.partial! index
+json.partial! 'api/games/index'

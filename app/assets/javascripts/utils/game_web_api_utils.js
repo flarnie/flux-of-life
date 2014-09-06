@@ -5,7 +5,7 @@ var $ = require('jquery'),
 var GameWebAPIUtils = {
   getAllGames: function() {
     $.ajax({
-      url: Routes.games_path()
+      url: Routes.api_games_path()
     }).success(function(data, textStatus) {
       GameServerActions.receiveAllGames(data);
     }).fail(function(data, textStatus) {
