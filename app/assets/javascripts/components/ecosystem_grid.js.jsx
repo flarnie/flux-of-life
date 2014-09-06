@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
-var React = require('react');
+var GameStores = require('../stores/game_stores'),
+    React = require('react');
 
 /**
  * Expects state params of
