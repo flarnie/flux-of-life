@@ -12,6 +12,16 @@ module.exports = {
       __dirname + '/app/assets/javascripts',
       'vendor/assets/bower_components',
       'node_modules'
+    ],
+    alias: {
+      'react': 'react/react',
+      'lodash': 'lodash/lodash'
+    },
+    extensions: [
+      '',
+      '.js',
+      '.jsx',
+      '.js.jsx'
     ]
   },
 
@@ -35,8 +45,8 @@ module.exports = {
 
   // If you have global vars, specify them here
   externals: {
-    react: 'var React',
     jquery: 'var jQuery',
+    react: 'var React',
     routes: 'var Routes'
   },
 

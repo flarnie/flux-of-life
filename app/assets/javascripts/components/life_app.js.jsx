@@ -1,8 +1,11 @@
 /** @jsx React.DOM */
-var EcosystemGrid = require('./ecosystem_grid.js.jsx'),
+var _ = require('lodash'),
+    EcosystemGrid = require('./ecosystem_grid'),
+    GamesIndex = require('./games_index'),
+    GameIndexLoadingScreen = require('./games_index_loading_screen'),
     GameStores = require('../stores/game_stores'),
     GameWebAPIUtils = require('../utils/game_web_api_utils'),
-    GridLoadingScreen = require('./grid_loading_screen.js.jsx'),
+    GridLoadingScreen = require('./grid_loading_screen'),
     React = require('react');
 
 /**

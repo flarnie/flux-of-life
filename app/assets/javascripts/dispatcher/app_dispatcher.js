@@ -1,5 +1,4 @@
-var Dispatcher = require('flux').Dispatcher,
-    merge = require('react/lib/merge');
+var Dispatcher = require('flux').Dispatcher;
 
 var myDispatcher = new Dispatcher();
 

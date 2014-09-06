@@ -1,7 +1,7 @@
-var AppDispatcher = require('../dispatcher/app_dispatcher'),
+var _ = require('lodash'),
+    AppDispatcher = require('../dispatcher/app_dispatcher'),
     EventEmitter = require('events').EventEmitter,
-    GameConstants = require('../constants/game_constants'),
-    merge = require('react/lib/merge');
+    GameConstants = require('../constants/game_constants');
 
 var _games = {};
 var _currentGame = 1 // Defaults to first game, which is seeded in db.
@@ -40,7 +40,7 @@ var receiveGames = function(games) {
 var updateGame = function(attributes) {
   var prevAttrs = _games[attributes.id];
   if (prevAttrs) {
-    attributes = merge(prevAttrs, attributes);
+    attributes = _.merge(prevAttrs, attributes);
   }
   _games[attributes.id] = attributes;
 };
@@ -53,7 +53,7 @@ var updateCurrentGame = function(currentGameId) {
   _currentGame = currentGameId;
 };
 
-var GameStores = merge(EventEmitter.prototype, {
+var GameStores = _.merge(EventEmitter.prototype, {
   /**
    * @return {object}
    */

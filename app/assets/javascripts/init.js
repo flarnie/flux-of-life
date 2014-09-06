@@ -1,4 +1,4 @@
-var LifeApp = require('./components/life_app.js.jsx');
+var LifeApp = require('./components/life_app');
 
 document.addEventListener("DOMContentLoaded", function() {
 
