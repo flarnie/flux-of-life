@@ -1,9 +1,6 @@
-var EcosystemGrid = require('./components/ecosystem_grid.jsx'),
-    GameWebAPIUtils = require('./utils/game_web_api_utils');
+var LifeApp = require('./components/life_app.js.jsx');
 
 document.addEventListener("DOMContentLoaded", function() {
-  // Load all games into stores
-  GameWebAPIUtils.getAllGames();
 
   // TODO: bootstrap all the games (later just games owned by current user)
   // TODO: grab chosen game by id
@@ -11,11 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Get bootstrapped Game info if it's there.
   var bootstrappedGameJson = document.getElementById('bootstrapped-game-json');
-  // If Game is found, render it as a grid.
-  if (bootstrappedGameJson) {
-    var gameJson = JSON.parse(bootstrappedGameJson.innerHTML);
-    React.renderComponent(EcosystemGrid({
-      game:  gameJson}), document.getElementById('react-component--ecosystem')
-    );
-  }
+  React.renderComponent(LifeApp({ gameId: 1 }),
+    document.getElementById('react-component--life-app')
+  );
 });
