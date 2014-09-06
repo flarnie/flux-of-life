@@ -1,9 +1,13 @@
-.ecosystem__grid {
+.ecosystem-grid__title {
+  text-align: center;
+}
+
+.ecosystem-grid__grid {
   margin: 0 auto;
   width: $grid-side-width;
 }
 
-.ecosystem__grid__tile {
+.grid__tile {
   background-color: $gray-base;
   border: solid 1px $black-base;
   float: left;
@@ -18,6 +22,6 @@
   }
 }
 
-.ecosystem__grid__tile--alive {
+.grid__tile--alive {
   background-color: $ivory-base;
 }

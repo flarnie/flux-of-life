@@ -32,10 +32,10 @@ var EcosystemGrid = React.createClass({
   _renderRow: function(y) {
     var tiles = [];
     for (var x = 0, innerLen = this.props.size; x < innerLen; x ++) {
-      var tileClasses = ['ecosystem__grid__tile'];
+      var tileClasses = ['grid__tile'];
       var coords = [x, y].join(',');
       if (this.state.livesRecord[coords]) {
-        tileClasses.push('ecosystem__grid__tile--alive');
+        tileClasses.push('grid__tile--alive');
       }
       var tileKey = String(x) +  '-' + String(y);
       tiles.push((<div className={tileClasses.join(' ')} key={tileKey} />));
@@ -44,7 +44,7 @@ var EcosystemGrid = React.createClass({
     return (
       <div
         key={`row-${y}`}
-        className="ecosystem__grid__row clearfix">
+        className="grid__row clearfix">
         {tiles}
       </div>
     );
@@ -62,8 +62,13 @@ var EcosystemGrid = React.createClass({
   render: function() {
     this._setLives();
     return (
-      <div className="ecosystem__grid">
-        {this._renderTiles()}
+      <div className="ecosystem-grid">
+        <div className="ecosystem-grid__title">
+          <h2>{this.props.game.name}</h2>
+        </div>
+        <div className="ecosystem-grid__grid">
+          {this._renderTiles()}
+        </div>
       </div>
     );
   }
