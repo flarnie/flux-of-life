@@ -1,7 +1,9 @@
 var Dispatcher = require('flux').Dispatcher,
     merge = require('react/lib/merge');
 
-var AppDispatcher = merge(Dispatcher.prototype, {
+var myDispatcher = new Dispatcher();
+
+var AppDispatcher = {
   /**
    * Helper methods to wrap the dispatching of events from the server and views.
    */
@@ -11,7 +13,7 @@ var AppDispatcher = merge(Dispatcher.prototype, {
    * @param {object} action
    */
   handleServerAction: function(action) {
-    this.dispatch({
+    myDispatcher.dispatch({
       source: 'SERVER_ACTION',
       action: action
     });
@@ -22,11 +24,15 @@ var AppDispatcher = merge(Dispatcher.prototype, {
    * @param {object} action
    */
   handleViewAction: function(action) {
-    this.dispatch({
+    myDispatcher.dispatch({
       source: 'VIEW_ACTION',
       action: action
     });
   },
-});
+
+  register: function(callback) {
+    myDispatcher.register(callback);
+  }
+};
 
 module.exports = AppDispatcher;

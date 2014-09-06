@@ -27,9 +27,20 @@ var updateGame = function(attributes) {
 };
 
 var GamesStore = merge(EventEmitter.prototype, {
+  /**
+   * @return {object}
+   */
   getAll: function() {
     return _games;
-  }
+  },
+
+  /**
+   * @param {number} id key for that game
+   * @return {object} game attributes as JSON object
+   */
+  find: function(id) {
+    return _games[id];
+  },
 
   emitChange: function() {
     this.emit(GameConstants.CHANGE_EVENT);
