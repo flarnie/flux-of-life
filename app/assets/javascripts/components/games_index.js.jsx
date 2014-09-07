@@ -30,7 +30,7 @@ var GamesIndex = React.createClass({
   _renderGame: function(game) {
     return (
       <li key={game.id}>
-        <a href={`#${game.id}`}>{game.name}</a>
+        <a href={`#${game.id}`}>{game.name} ({game.lives.length} cells)</a>
       </li>
     );
   },
