@@ -194,6 +194,10 @@ var EcosystemGrid = React.createClass({
     GameWebAPIUtils.updateGame(this.props.game.id, gameAttributes);
   },
 
+  _clearLife: function() {
+    this.setState({ livesRecord: {} });
+  },
+
   render: function() {
     return (
       <div className="ecosystem-grid">
@@ -210,6 +214,11 @@ var EcosystemGrid = React.createClass({
             disabled={!this.state.playMode}
             onClick={this._stopPlayMode}>
             Edit
+          </button>
+          <button
+            disabled={this.state.playMode}
+            onClick={this._clearLife}>
+            Clear
           </button>
           <button
             disabled={this.state.playMode}
