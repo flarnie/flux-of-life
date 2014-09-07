@@ -11,6 +11,16 @@ var GameServerActions = {
       actionType: GameConstants.RECEIVE,
       attributes: allGameAttributes
     });
+  },
+  /**
+   * Handles loading of games data from server
+   * @param {object} allGameAttributes
+   */
+  updateGame: function(gameAttributes) {
+    AppDispatcher.handleServerAction({
+      actionType: GameConstants.UPDATE,
+      attributes: gameAttributes
+    });
   }
 };
 

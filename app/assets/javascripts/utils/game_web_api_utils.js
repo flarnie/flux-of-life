@@ -9,7 +9,19 @@ var GameWebAPIUtils = {
     }).success(function(data, textStatus) {
       GameServerActions.receiveAllGames(data);
     }).fail(function(data, textStatus) {
-      debugger;
+      throw `Failed to fetch games from server: ${data}`;
+    });
+  },
+
+  updateGame: function(id, attributes) {
+    $.ajax({
+      type: 'PUT',
+      data: { game: attributes },
+      url: Routes.api_game_path(id)
+    }).success(function(data, textStatus) {
+      GameServerActions.updateGame(data);
+    }).fail(function(data, textStatus) {
+      throw `Failed to update game: ${data}`;
     });
   }
 };

@@ -98,7 +98,7 @@ AppDispatcher.register(function(payload) {
   var action = payload.action;
   switch(action.actionType) {
     case GameConstants.UPDATE:
-
+      updateGame(action.attributes);
     break;
     case GameConstants.RECEIVE:
       receiveGames(action.attributes);

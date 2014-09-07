@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 var $ = require('jquery'),
     GameStores = require('../stores/game_stores'),
+    GameWebAPIUtils = require('../utils/game_web_api_utils'),
     React = require('react');
 
 /**
@@ -169,8 +170,28 @@ var EcosystemGrid = React.createClass({
     return rows;
   },
 
+  _formatLivesRecord: function() {
+    var livesRecord = this.state.livesRecord,
+        lives = [];
+    for (var coords in livesRecord) {
+      if (livesRecord.hasOwnProperty(coords) && livesRecord[coords]) {
+        var [x, y] = coords.split(',');
+        lives.push({
+          x_coord: parseInt(x, 10),
+          y_coord: parseInt(y, 10)
+        });
+      }
+    }
+    return lives;
+  },
+
   _saveGame: function() {
-    // TODO: update game
+    var gameLives = this._formatLivesRecord(),
+        gameAttributes = {
+          name: this.props.game.name,
+          lives: gameLives
+        };
+    GameWebAPIUtils.updateGame(this.props.game.id, gameAttributes);
   },
 
   render: function() {
