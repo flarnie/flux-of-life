@@ -25,3 +25,9 @@
 .grid__tile--alive {
   background-color: $ivory-base;
 }
+
+.grid__tile--in-play {
+  @extend %animation-fade;
+  // override the slow speed
+  animation-duration: $speed-medium;
+}
