@@ -66,10 +66,10 @@ var EcosystemGrid = React.createClass({
     // for each of the coords in the grid
     for (var y = 0; y < this.props.size; y++) {
       for (var x = 0; x < this.props.size; x ++) {
-      // find it's neighbors
-      // count currently alive neighbors
-      var neighborLifeCount = this._findNeighborLifeCount(x, y);
-        // update this coord in the next life coords
+        // find it's neighbors
+        // count currently alive neighbors
+        var neighborLifeCount = this._findNeighborLifeCount(x, y);
+          // update this coord in the next life coords
         var aliveAgain = this._keepAlive({
           lifeCount: neighborLifeCount,
           currentlyAlive: this.state.livesRecord[[x, y].join(',')]
@@ -80,9 +80,11 @@ var EcosystemGrid = React.createClass({
       }
     }
     // finally - set this.state.livesRecord to the next life coords
-    this._setLives(nextLifeCoords);
+    this.setState({ livesRecord: this._setLives(nextLifeCoords) });
     // trigger the next step after a delay
-    this._setNextStep();
+    if (this.state.playMode) {
+      this._setNextStep();
+    }
   },
 
   _setNextStep: function() {
@@ -96,7 +98,7 @@ var EcosystemGrid = React.createClass({
   },
 
   _stopPlayMode: function() {
-    if (this.props.timeOutId) {
+    if (this.props.timeoutId) {
       window.clearTimeout(this.props.timeoutId);
     }
     this.setState({ playMode: false });
