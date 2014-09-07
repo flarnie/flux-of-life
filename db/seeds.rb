@@ -8,7 +8,8 @@
 
 ActiveRecord::Base.transaction do
   g = Game.create!(name: 'TestGame')
-  10.times do |x|
+  # create a blinker
+  3.times do |x|
     Life.create!(game_id: g.id, x_coord: (x + 5), y_coord: 5)
   end
 end
