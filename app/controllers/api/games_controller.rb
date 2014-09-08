@@ -11,6 +11,7 @@ class Api::GamesController < ApplicationController
       @game.lives.each do |life|
         life.destroy!
       end
+      @game.reload
       # Create the new life tiles
       game_params[:lives].each do |index, life_params|
         @game.lives.build(life_params)

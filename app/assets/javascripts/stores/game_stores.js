@@ -38,10 +38,8 @@ var receiveGames = function(games) {
  * @param {object} attributes
  */
 var updateGame = function(attributes) {
-  var prevAttrs = _games[attributes.id];
-  if (prevAttrs) {
-    attributes = _.merge(prevAttrs, attributes);
-  }
+  // We can't just merge because we want to overwrite the 'lives' attribute
+  // completely
   _games[attributes.id] = attributes;
 };
 
