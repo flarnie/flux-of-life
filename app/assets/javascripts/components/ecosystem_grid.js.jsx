@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 var $ = require('jquery'),
+    GameGridActionCreators = require('../actions/game_grid_action_creators'),
     GameStores = require('../stores/game_stores'),
-    GameWebAPIUtils = require('../utils/game_web_api_utils'),
     React = require('react');
 
 /**
@@ -191,7 +191,7 @@ var EcosystemGrid = React.createClass({
           name: this.props.game.name,
           lives: gameLives
         };
-    GameWebAPIUtils.updateGame(this.props.game.id, gameAttributes);
+    GameGridActionCreators.updateGame(this.props.game.id, gameAttributes);
   },
 
   _clearLife: function() {
