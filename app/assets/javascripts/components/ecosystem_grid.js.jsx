@@ -188,10 +188,11 @@ var EcosystemGrid = React.createClass({
   _saveGame: function() {
     var gameLives = this._formatLivesRecord(),
         gameAttributes = {
+          id: this.props.game.id,
           name: this.props.game.name,
           lives: gameLives
         };
-    GameGridActionCreators.updateGame(this.props.game.id, gameAttributes);
+    GameGridActionCreators.updateGame(gameAttributes);
   },
 
   _clearLife: function() {

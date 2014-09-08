@@ -12,14 +12,14 @@ var GameGridActionCreators = {
   /**
    * @param {object} gameAttributes
    */
-  updateGame: function(id, gameAttributes) {
+  updateGame: function(gameAttributes) {
     // Optimistically send the action to the dispatcher
     AppDispatcher.handleViewAction({
       actionType: GameConstants.UPDATE,
       attributes: gameAttributes
     });
     // Send update to the server
-    GameWebAPIUtils.updateGame(id, gameAttributes);
+    GameWebAPIUtils.updateGame(gameAttributes);
   }
 };
 

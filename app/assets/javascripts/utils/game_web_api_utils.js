@@ -13,7 +13,10 @@ var GameWebAPIUtils = {
     });
   },
 
-  updateGame: function(id, attributes) {
+  updateGame: function(attributes) {
+    // Server won't expect the 'id' attribute
+    var id = attributes.id;
+    delete attributes['id'];
     $.ajax({
       type: 'PUT',
       data: { game: attributes },
