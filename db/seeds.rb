@@ -7,9 +7,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 ActiveRecord::Base.transaction do
-  g = Game.create!(name: 'TestGame')
-  # create a blinker
-  3.times do |x|
-    Life.create!(game_id: g.id, x_coord: (x + 5), y_coord: 5)
+  # create 5 test games
+  5.times do |i|
+    g = Game.create!(name: "TestGame #{i}")
+    # create a blinker
+    3.times do |x|
+      Life.create!(game_id: g.id, x_coord: (x + i), y_coord: 5)
+    end
   end
 end
