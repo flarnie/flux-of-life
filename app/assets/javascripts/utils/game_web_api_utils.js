@@ -1,5 +1,5 @@
 var $ = require('jquery'),
-    GameServerActions = require('../actions/game_server_actions'),
+    GameServerActionCreators = require('../actions/game_server_action_creators'),
     Routes = require('routes');
 
 var GameWebAPIUtils = {
@@ -7,7 +7,7 @@ var GameWebAPIUtils = {
     $.ajax({
       url: Routes.api_games_path()
     }).success(function(data, textStatus) {
-      GameServerActions.receiveAllGames(data);
+      GameServerActionCreators.receiveAllGames(data);
     }).fail(function(data, textStatus) {
       throw `Failed to fetch games from server: ${data}`;
     });
@@ -22,7 +22,7 @@ var GameWebAPIUtils = {
       data: { game: attributes },
       url: Routes.api_game_path(id)
     }).success(function(data, textStatus) {
-      GameServerActions.updateGame(data);
+      GameServerActionCreators.updateGame(data);
     }).fail(function(data, textStatus) {
       throw `Failed to update game: ${data}`;
     });
