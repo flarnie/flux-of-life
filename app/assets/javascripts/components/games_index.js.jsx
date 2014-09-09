@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
-var GameStores = require('../stores/game_stores'),
+var GameIndexActionCreators = require('../actions/game_index_action_creators'),
+    GameStores = require('../stores/game_stores'),
     GameWebAPIUtils = require('../utils/game_web_api_utils'),
     React = require('react');
 
@@ -25,12 +26,28 @@ var GamesIndex = React.createClass({
   },
 
   /**
+   * @param {number} id
+   */
+  _updateCurrentGame: function(id) {
+    GameIndexActionCreators.updateCurrentGame(id);
+  },
+
+  /**
    * @return {object}
    */
   _renderGame: function(game) {
+    var classes = {
+      'game-index__game': true,
+      'game-index__game--current': (GameStores.getCurrentGameId() === game.id)
+    };
     return (
       <li key={game.id}>
-        <a href={`#${game.id}`}>{game.name} ({game.lives.length} cells)</a>
+        <a
+          className={React.addons.classSet(classes)}
+          onClick={this._updateCurrentGame.bind(this, game.id)}
+          href={`#${game.id}`}>
+          {game.name} ({game.lives.length} cells)
+        </a>
       </li>
     );
   },

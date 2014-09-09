@@ -60,6 +60,13 @@ var GameStores = _.merge(EventEmitter.prototype, {
   },
 
   /**
+   * @return {number}
+   */
+  getCurrentGameId: function() {
+    return _currentGame;
+  },
+
+  /**
    * @param {number} id key for that game
    * @return {object} game attributes as JSON object
    */
