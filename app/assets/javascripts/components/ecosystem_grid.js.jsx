@@ -34,6 +34,13 @@ var EcosystemGrid = React.createClass({
     };
   },
 
+  componentWillReceiveProps: function(nextProps) {
+    this.setState({
+      livesRecord: this._setLives(nextProps.game.lives),
+      playMode: false
+    });
+  },
+
   _findNeighborLifeCount: function(x, y) {
     var nCount = 0;
     var neighbors = DELTAS.map((deltaCoords) => {

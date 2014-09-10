@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Get bootstrapped Game info if it's there.
   var bootstrappedGameJson = document.getElementById('bootstrapped-game-json');
-  React.renderComponent(LifeApp({ gameId: 1 }),
+  React.renderComponent(LifeApp(),
     document.getElementById('react-component--life-app')
   );
 });
