@@ -54,3 +54,24 @@ del {
   animation-timing-function: ease-in-out;
   opacity: 1;
 }
+
+// links
+
+:link {
+    color: $green-dark;
+}
+
+// visited link */
+a:visited {
+    color: $green-dark;
+}
+
+// mouse over link */
+a:hover {
+    color: $blue-base;
+}
+
+// selected link */
+a:active {
+    color: $blue-base;
+}

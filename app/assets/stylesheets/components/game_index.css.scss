@@ -1,4 +1,22 @@
-// TODO: add more styles here
+.games-index {
+  max-height: $grid-side-width;
+  overflow: scroll;
+  padding: $standard-padding;
+
+  ul {
+    list-style: none;
+  }
+}
+
+.game-index__game {
+  display: inline-block;
+  padding: $standard-padding 0;
+}
+
+
 .game-index__game--current {
-  color: green;
+  // Specific enough to override default link styles
+  body & {
+    color: $green-base;
+  }
 }
