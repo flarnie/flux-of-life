@@ -5,6 +5,15 @@ class Api::GamesController < ApplicationController
     @games = Game.all
   end
 
+  def create
+    @game = Game.new(game_params)
+    if @game.save!
+      render :jbuilder, template: 'api/games/show'
+    else
+      render json: @game.errors, status: 422
+    end
+  end
+
   def update
     ActiveRecord::Base.transaction do
       # Delete the previous life tiles
