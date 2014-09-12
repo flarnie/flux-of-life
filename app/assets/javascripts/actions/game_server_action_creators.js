@@ -25,6 +25,19 @@ var GameServerActionCreators = {
       actionType: GameConstants.UPDATE,
       attributes: gameAttributes
     });
+  },
+
+  /**
+   * Since we are only changing the visible tab in our local view of the
+   * application, we only need to dispatch an action, not send any update to the
+   * server.
+   * @param {string|number} gameId
+   */
+  updateCurrentGame: function(gameId) {
+    AppDispatcher.handleServerAction({
+      actionType: GameConstants.CURRENT_GAME.UPDATE,
+      attributes: gameId
+    });
   }
 };
 

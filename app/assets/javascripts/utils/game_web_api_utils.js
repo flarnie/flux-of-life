@@ -26,7 +26,20 @@ var GameWebAPIUtils = {
     }).fail(function(data, textStatus) {
       throw `Failed to update game: ${data}`;
     });
-  }
+  },
+
+  newGame: function(gameAttrs) {
+    $.ajax({
+      type: 'POST',
+      data: gameAttrs,
+      url: Routes.api_games_path()
+    }).success(function(data, textStatus) {
+      GameServerActionCreators.updateGame(data);
+      GameServerActionCreators.updateCurrentGame(data.id);
+    }).fail(function(data, textStatus) {
+      throw `Failed to save game: ${data}`;
+    });
+  },
 };
 
 module.exports = GameWebAPIUtils;

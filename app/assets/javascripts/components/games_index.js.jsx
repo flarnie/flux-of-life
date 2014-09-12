@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 var GameIndexActionCreators = require('../actions/game_index_action_creators'),
     GameStores = require('../stores/game_stores'),
-    GameWebAPIUtils = require('../utils/game_web_api_utils'),
     React = require('react');
 
 var GamesIndex = React.createClass({
@@ -52,6 +51,12 @@ var GamesIndex = React.createClass({
     );
   },
 
+  _handleStartNewGame: function() {
+    var gamesCount = Object.keys(GameStores.getAll()).length;
+    var gameName = `New Game #${gamesCount}`;
+    GameIndexActionCreators.startNewGame({ game: { name: gameName } });
+  },
+
   /**
    * @return {object}
    */
@@ -69,6 +74,11 @@ var GamesIndex = React.createClass({
       <div className="games-index">
         <ul>
           {gameLinks}
+          <li>
+            <a href="#" onClick={this._handleStartNewGame}>
+              New
+            </a>
+          </li>
         </ul>
       </div>
     );
