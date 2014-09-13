@@ -16,7 +16,7 @@ var GamesIndex = React.createClass({
     // No need to fetch the games - the parent component does that.
   },
 
-  compomentWillUnmount: function() {
+  componentWillUnmount: function() {
     GameStores.removeChangeListener(this._onChange);
   },
 
@@ -74,7 +74,7 @@ var GamesIndex = React.createClass({
       <div className="games-index">
         <ul>
           {gameLinks}
-          <li>
+          <li key="new">
             <a href="#" onClick={this._handleStartNewGame}>
               New
             </a>
