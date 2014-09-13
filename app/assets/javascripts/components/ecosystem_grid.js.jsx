@@ -28,15 +28,19 @@ var EcosystemGrid = React.createClass({
   },
 
   getInitialState: function() {
+    var currentGame = GameStores.getCurrentGame();
     return {
-      livesRecord: this._setLives(this.props.game.lives),
+      game: currentGame,
+      livesRecord: this._setLives(currentGame.lives),
       playMode: false
     };
   },
 
   componentWillReceiveProps: function(nextProps) {
+    var currentGame = GameStores.getCurrentGame();
     this.setState({
-      livesRecord: this._setLives(nextProps.game.lives),
+      game: currentGame,
+      livesRecord: this._setLives(currentGame.lives),
       playMode: false
     });
   },
@@ -54,6 +58,24 @@ var EcosystemGrid = React.createClass({
       }
     });
     return nCount;
+  },
+
+  componentDidMount: function() {
+    GameStores.addChangeListener(this._onChange);
+    // No need to fetch the games - the parent component does that.
+  },
+
+  componentWillUnmount: function() {
+    this._stopPlayMode();
+    GameStores.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    var currentGame = GameStores.getCurrentGame();
+    return {
+      game: currentGame,
+      livesRecord: this._setLives(currentGame.lives),
+    };
   },
 
   /**
@@ -99,10 +121,6 @@ var EcosystemGrid = React.createClass({
     var timeoutId = window.setTimeout(this._takeStep, this.props.lifeStepLength);
     this.props.timeoutId = timeoutId;
     this.forceUpdate();
-  },
-
-  componentWillUnmount: function() {
-    this._stopPlayMode();
   },
 
   _stopPlayMode: function() {
@@ -195,8 +213,8 @@ var EcosystemGrid = React.createClass({
   _saveGame: function() {
     var gameLives = this._formatLivesRecord(),
         gameAttributes = {
-          id: this.props.game.id,
-          name: this.props.game.name,
+          id: this.state.game.id,
+          name: this.state.game.name,
           lives: gameLives
         };
     GameGridActionCreators.updateGame(gameAttributes);
@@ -210,7 +228,7 @@ var EcosystemGrid = React.createClass({
     return (
       <div className="ecosystem-grid">
         <div className="ecosystem-grid__title">
-          <h2>{this.props.game.name}</h2>
+          <h2>{this.state.game.name}</h2>
         </div>
         <div className="ecosystem-grid__controls">
           <button

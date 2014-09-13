@@ -41,10 +41,9 @@ var LifeApp = React.createClass({
    * @return {object}
    */
   _renderGame: function() {
-    var gameId = GameStores.getCurrentGameId();
-    var currentGame = GameStores.find(gameId);
+    var currentGame = GameStores.getCurrentGame();
     if (currentGame) {
-      return (<EcosystemGrid game={currentGame} />);
+      return (<EcosystemGrid />);
     } else {
       return (<GridLoadingScreen />);
     }

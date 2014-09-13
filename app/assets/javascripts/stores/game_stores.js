@@ -74,6 +74,13 @@ var GameStores = _.merge(EventEmitter.prototype, {
     return _games[id];
   },
 
+  /**
+   * @return {object}
+   */
+  getCurrentGame: function() {
+    return this.find(this.getCurrentGameId());
+  },
+
   emitChange: function() {
     this.emit(GameConstants.CHANGE_EVENT);
   },
