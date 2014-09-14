@@ -1,3 +1,7 @@
+.ecosystem-grid {
+  padding:  $standard-padding 0;
+}
+
 .ecosystem-grid__title {
   text-align: center;
 }
@@ -5,6 +9,12 @@
 .ecosystem-grid__grid {
   margin: 0 auto;
   width: $grid-side-width;
+}
+
+.ecosystem-grid__controls {
+  margin: 0 auto;
+  width: $grid-side-width;
+  padding:  $standard-padding 0;
 }
 
 .grid__tile {
