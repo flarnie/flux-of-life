@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
-var GameIndexActionCreators = require('../actions/game_index_action_creators'),
+var _ = require('lodash'),
+    GameIndexActionCreators = require('../actions/game_index_action_creators'),
     GameStores = require('../stores/game_stores'),
     React = require('react');
 
@@ -8,7 +9,11 @@ var GamesIndex = React.createClass({
   * @return {object}
   */
   getInitialState: function() {
-    return { games: GameStores.getAll() };
+    return {
+      games: GameStores.getAll(),
+      scrolledPastTop: false,
+      scrolledAboveBottom: true,
+    };
   },
 
   componentDidMount: function() {
@@ -36,8 +41,8 @@ var GamesIndex = React.createClass({
    */
   _renderGame: function(game) {
     var classes = {
-      'game-index__game': true,
-      'game-index__game--current': (GameStores.getCurrentGameId() === game.id)
+      'games-index__game': true,
+      'games-index__game--current': (GameStores.getCurrentGameId() === game.id)
     };
     return (
       <li key={game.id}>
@@ -57,10 +62,31 @@ var GamesIndex = React.createClass({
     GameIndexActionCreators.startNewGame({ game: { name: gameName } });
   },
 
+  _handleScroll: function() {
+    var scrolledPastTop = (this.getDOMNode().scrollTop > 0);
+
+    var scrolledAboveBottom = (
+      (this.getDOMNode().scrollTop + this.getDOMNode().offsetHeight) <
+        this.refs.gamesIndexContent.getDOMNode().offsetHeight
+    );
+
+    this.setState({
+      scrolledPastTop: scrolledPastTop,
+      scrolledAboveBottom: scrolledAboveBottom
+    });
+  },
+
   /**
    * @return {object}
    */
   render: function() {
+    var classNames = {
+      'games-index': true,
+      'games-index--scrolled-past-top': this.state.scrolledPastTop,
+      'games-index--scrolled-above-bottom': this.state.scrolledAboveBottom,
+      'games-index--scrolled-to-middle': this.state.scrolledAboveBottom && this.state.scrolledPastTop
+    };
+
     var allGames = this.state.games,
         gameLinks = [];
     for (let gameId in allGames) {
@@ -71,8 +97,10 @@ var GamesIndex = React.createClass({
     }
 
     return (
-      <div className="games-index">
-        <ul>
+      <div
+        onScroll={_.throttle(this._handleScroll, 100)}
+        className={React.addons.classSet(classNames)}>
+        <ul ref="gamesIndexContent">
           {gameLinks}
           <li key="new">
             <a href="#" onClick={this._handleStartNewGame}>

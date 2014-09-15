@@ -1,22 +1,36 @@
 .games-index {
+  background-color: $ivory-base;
   max-height: $grid-side-width;
   overflow: scroll;
   padding: $standard-padding;
+  margin: $standard-padding;
 
   ul {
     list-style: none;
   }
 }
 
-.game-index__game {
+.games-index__game {
   display: inline-block;
   padding: $standard-padding 0;
 }
 
 
-.game-index__game--current {
+.games-index__game--current {
   // Specific enough to override default link styles
   body & {
     color: $green-base;
   }
+}
+
+.games-index--scrolled-past-top {
+  @extend %top-shadow;
+}
+
+.games-index--scrolled-above-bottom {
+  @extend %bottom-shadow;
+}
+
+.games-index--scrolled-to-middle {
+  @extend %top-and-bottom-shadow;
 }

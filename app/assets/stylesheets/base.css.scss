@@ -12,6 +12,12 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   padding: 0;
 }
 
+html,
+body {
+  background-color: $white-base;
+  height: 100%;
+}
+
 p {font-size:100%;}
 h1 {font-size:160%;}
 h2 {font-size:150%;}

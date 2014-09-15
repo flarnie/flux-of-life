@@ -19,3 +19,22 @@ $speed-slow: 1.5s;
 
 // Other measurements
 $standard-padding: 1.5em;
+
+// Mixins and Placeholders
+%bottom-shadow {
+  -webkit-box-shadow: inset 0 -8px 6px -6px black;
+  -moz-box-shadow: inset 0 -8px 6px -6px black;
+  box-shadow: inset 0 -8px 6px -6px black;
+}
+
+%top-shadow {
+  -webkit-box-shadow: inset 0 8px 6px -6px black;
+  -moz-box-shadow: inset 0 8px 6px -6px black;
+  box-shadow: inset 0 8px 6px -6px black;
+}
+
+%top-and-bottom-shadow {
+  -webkit-box-shadow: inset 0 -8px 6px -6px black, inset 0 8px 6px -6px black;
+  -moz-box-shadow: inset 0 -8px 6px -6px black, inset 0 8px 6px -6px black;
+  box-shadow: inset 0 -8px 6px -6px black, inset 0 8px 6px -6px black;
+}
