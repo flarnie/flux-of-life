@@ -2,6 +2,7 @@
 var $ = require('jquery'),
     GameGridActionCreators = require('../actions/game_grid_action_creators'),
     GameStores = require('../stores/game_stores'),
+    GridTile = require('./grid_tile'),
     React = require('react');
 
 /**
@@ -156,22 +157,15 @@ var EcosystemGrid = React.createClass({
   _renderRow: function(y) {
     var tiles = [];
     for (var x = 0, innerLen = this.props.size; x < innerLen; x ++) {
-      var tileClasses = { 'grid__tile': true };
-      var coords = [x, y].join(',');
-      if (this.state.livesRecord[coords]) {
-        tileClasses['grid__tile--alive'] = true;
-        if (this.state.playMode) {
-          tileClasses['grid__tile--in-play'] = true;
-        }
-      }
-
+      var coords = `${x},${y}`;
       var theTileClick = (this.state.playMode) ?
         $.nooop : this._toggleLifeTile.bind(this, coords);
       var tileKey = String(x) +  '-' + String(y);
       tiles.push((
-        <div
+        <GridTile
           onClick={theTileClick}
-          className={React.addons.classSet(tileClasses)}
+          alive={this.state.livesRecord[coords]}
+          inPlay={this.state.livesRecord[coords] && this.state.playMode}
           key={tileKey}
         />
       ));

@@ -16,28 +16,3 @@
   width: $grid-side-width;
   padding:  $standard-padding 0;
 }
-
-.grid__tile {
-  background-color: $gray-base;
-  border: solid 1px $black-base;
-  float: left;
-  height: $grid-tile-width;
-  width: $grid-tile-width;
-  display: inline-block;
-  -webkit-transition: background-color $speed-medium;
-  transition: background-color $speed-medium;
-
-  &:hover {
-    background-color: $white-base;
-  }
-}
-
-.grid__tile--alive {
-  background-color: $ivory-base;
-}
-
-.grid__tile--in-play {
-  @extend %animation-fade;
-  // override the slow speed
-  animation-duration: $speed-medium;
-}
