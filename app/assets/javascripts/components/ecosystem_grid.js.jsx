@@ -2,8 +2,8 @@
 var $ = require('jquery'),
     GameGridActionCreators = require('../actions/game_grid_action_creators'),
     GameStores = require('../stores/game_stores'),
+    GridControls = require('./grid_controls'),
     GridTile = require('./grid_tile'),
-    PlayPauseButton = require('./play_pause_button'),
     React = require('react');
 
 /**
@@ -220,30 +220,18 @@ var EcosystemGrid = React.createClass({
   },
 
   render: function() {
-    var playOrPauseCallback = !this.state.playMode ?
-      this._startPlayMode :
-      this._stopPlayMode;
     return (
       <div className="ecosystem-grid">
         <div className="ecosystem-grid__title">
           <h2>{this.state.game.name}</h2>
         </div>
-        <div className="ecosystem-grid__controls">
-          <PlayPauseButton
-            onClick={playOrPauseCallback}
-            triggersPlay={!this.state.playMode}
-          />
-          <button
-            disabled={this.state.playMode}
-            onClick={this._clearLife}>
-            Clear
-          </button>
-          <button
-            disabled={this.state.playMode}
-            onClick={this._saveGame}>
-            Save
-          </button>
-        </div>
+        <GridControls
+          onPlay={this._startPlayMode}
+          onPause={this._stopPlayMode}
+          onSave={this._saveGame}
+          onClear={this._clearLife}
+          playMode={this.state.playMode}
+        />
         <div className="ecosystem-grid__grid">
           {this._renderTiles()}
         </div>
