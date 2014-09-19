@@ -12,6 +12,7 @@ var GridControls = React.createClass({
     onPause: pt.func.isRequired,
     onClear: pt.func.isRequired,
     onSave: pt.func.isRequired,
+    onReset: pt.func.isRequired,
     playMode: pt.bool.isRequired
   },
 
@@ -29,6 +30,11 @@ var GridControls = React.createClass({
           disabled={this.props.playMode}
           onClick={this.props.onClear}>
           Clear
+        </button>
+        <button
+          disabled={this.props.playMode}
+          onClick={this.props.onReset}>
+          Reset
         </button>
         <button
           disabled={this.props.playMode}

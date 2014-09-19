@@ -29,13 +29,17 @@ var EcosystemGrid = React.createClass({
     };
   },
 
-  getInitialState: function() {
+  _fetchCurrentGameState: function() {
     var currentGame = GameStores.getCurrentGame();
     return {
       game: currentGame,
       livesRecord: this._setLives(currentGame.lives),
       playMode: false
     };
+  },
+
+  getInitialState: function() {
+    return this._fetchCurrentGameState();
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -219,6 +223,10 @@ var EcosystemGrid = React.createClass({
     this.setState({ livesRecord: {} });
   },
 
+  _handleReset: function() {
+    this.setState(this._fetchCurrentGameState());
+  },
+
   render: function() {
     return (
       <div className="ecosystem-grid">
@@ -230,6 +238,7 @@ var EcosystemGrid = React.createClass({
           onPause={this._stopPlayMode}
           onSave={this._saveGame}
           onClear={this._clearLife}
+          onReset={this._handleReset}
           playMode={this.state.playMode}
         />
         <div className="ecosystem-grid__grid">
