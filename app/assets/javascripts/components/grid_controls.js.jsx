@@ -2,7 +2,7 @@
 var PlayPauseButton = require('./play_pause_button'),
     React = require('react');
 
-var pt = React.PropType;
+var pt = React.PropTypes;
 /**
  * Uses callbacks passed in to trigger a number of changes to the grid.
  */
