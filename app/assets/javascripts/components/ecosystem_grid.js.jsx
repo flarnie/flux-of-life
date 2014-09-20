@@ -42,15 +42,6 @@ var EcosystemGrid = React.createClass({
     return this._fetchCurrentGameState();
   },
 
-  componentWillReceiveProps: function(nextProps) {
-    var currentGame = GameStores.getCurrentGame();
-    this.setState({
-      game: currentGame,
-      livesRecord: this._setLives(currentGame.lives),
-      playMode: false
-    });
-  },
-
   _findNeighborLifeCount: function(x, y) {
     var nCount = 0;
     var neighbors = DELTAS.map((deltaCoords) => {
@@ -77,11 +68,7 @@ var EcosystemGrid = React.createClass({
   },
 
   _onChange: function() {
-    var currentGame = GameStores.getCurrentGame();
-    return {
-      game: currentGame,
-      livesRecord: this._setLives(currentGame.lives),
-    };
+    this.setState(this._fetchCurrentGameState());
   },
 
   /**
