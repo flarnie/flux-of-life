@@ -6,6 +6,7 @@ var _ = require('lodash'),
     GameStores = require('../stores/game_stores'),
     GameWebAPIUtils = require('../utils/game_web_api_utils'),
     GridLoadingScreen = require('./grid_loading_screen'),
+    GridPreview = require('./grid_preview'),
     React = require('react');
 
 /**
@@ -50,6 +51,16 @@ var LifeApp = React.createClass({
   },
 
   /**
+   * @return {?object}
+   */
+  _renderGamePreview: function() {
+    var currentGame = GameStores.getCurrentGame();
+    if (currentGame) {
+      return (<GridPreview />);
+    }
+  },
+
+  /**
    * @return {object}
    */
   _renderGamesIndex: function() {
@@ -67,6 +78,7 @@ var LifeApp = React.createClass({
     return (
       <div className="life-app clearfix">
         <main className="life-app--primary">
+          {this._renderGamePreview()}
           {this._renderGame()}
         </main>
         <div className="life-app--secondary">

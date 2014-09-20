@@ -22,3 +22,17 @@
   // override the slow speed
   animation-duration: $speed-medium;
 }
+
+.grid-tile--size-medium {
+  height: $grid-tile-width;
+  width: $grid-tile-width;
+}
+
+.grid-tile--size-tiny {
+  border: 0px;
+  height: $grid-tile-width-tiny;
+  width: $grid-tile-width-tiny;
+  &:hover {
+    background-color: $gray-base;
+  }
+}

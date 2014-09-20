@@ -5,6 +5,7 @@ var GridTile = React.createClass({
   getDefaultProps: function() {
     return {
       alive: false,
+      size: "medium",
       inPlay: false
     };
   },
@@ -15,6 +16,8 @@ var GridTile = React.createClass({
       'grid-tile--alive': this.props.alive,
       'grid-tile--in-play': this.props.inPlay
     };
+
+    classes[`grid-tile--size-${this.props.size}`] = true;
 
     return (
       <div
