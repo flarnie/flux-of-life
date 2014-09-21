@@ -2,8 +2,8 @@
 var $ = require('jquery'),
     GameGridActionCreators = require('../actions/game_grid_action_creators'),
     GameStores = require('../stores/game_stores'),
+    Grid = require('./grid'),
     GridControls = require('./grid_controls'),
-    GridTile = require('./grid_tile'),
     React = require('react');
 
 /**
@@ -17,10 +17,6 @@ const DELTAS = [[-1, 1],  [0, 1],  [1, 1],
  * constant {number} life_step_length the time between steps in the Game of Life
  */
 const LIFE_STEP_LENGTH = 2000; // 2 seconds
-/**
- * Expects state params of
- * game - a JSON representation of a Game model with nested life models.
- */
 var EcosystemGrid = React.createClass({
   getDefaultProps: function() {
     return {
@@ -146,41 +142,6 @@ var EcosystemGrid = React.createClass({
     this.setState({ livesRecord: updatedLivesRecord });
   },
 
-  _renderRow: function(y) {
-    var tiles = [];
-    for (var x = 0, innerLen = this.props.size; x < innerLen; x ++) {
-      var coords = `${x},${y}`;
-      var theTileClick = (this.state.playMode) ?
-        $.nooop : this._toggleLifeTile.bind(this, coords);
-      var tileKey = String(x) +  '-' + String(y);
-      tiles.push((
-        <GridTile
-          onClick={theTileClick}
-          alive={this.state.livesRecord[coords]}
-          inPlay={this.state.livesRecord[coords] && this.state.playMode}
-          key={tileKey}
-        />
-      ));
-    }
-
-    return (
-      <div
-        key={`row-${y}`}
-        className="grid__row clearfix">
-        {tiles}
-      </div>
-    );
-  },
-
-  _renderTiles: function() {
-    var rows = [];
-    for (var y = 0, len = this.props.size; y < len; y ++) {
-      rows.push(this._renderRow(y));
-    }
-
-    return rows;
-  },
-
   _formatLivesRecord: function() {
     var livesRecord = this.state.livesRecord,
         lives = [];
@@ -228,8 +189,12 @@ var EcosystemGrid = React.createClass({
           onReset={this._handleReset}
           playMode={this.state.playMode}
         />
-        <div className="ecosystem-grid__grid">
-          {this._renderTiles()}
+        <div className="ecosystem-grid__grid clearfix">
+          <Grid
+            playMode={this.state.playMode}
+            livesRecord={this.state.livesRecord}
+            onActiveTileClick={this._toggleLifeTile}
+          />
         </div>
       </div>
     );

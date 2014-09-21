@@ -4,7 +4,11 @@ var GridTile = require('./grid_tile'),
 
 var Grid = React.createClass({
   propTypes: {
-    livesRecord: React.PropTypes.object
+    livesRecord: React.PropTypes.object,
+    playMode: React.PropTypes.bool,
+    size: React.PropTypes.number,
+    tileSize: React.PropTypes.string,
+    onActiveTileClick: React.PropTypes.func
   },
 
   getDefaultProps: function() {
@@ -15,16 +19,23 @@ var Grid = React.createClass({
     };
   },
 
+  _handleActiveTileClick: function(coords) {
+    this.props.onActiveTileClick(coords);
+  },
+
   _renderRow: function(y) {
     var tiles = [];
     for (var x = 0, innerLen = this.props.size; x < innerLen; x ++) {
       var coords = [x, y].join(',');
       var tileKey = String(x) +  '-' + String(y);
+      var theTileClick = (this.props.playMode) ?
+        $.nooop : this._handleActiveTileClick.bind(this, coords);
       tiles.push((
         <GridTile
           size={this.props.tileSize}
           alive={this.props.livesRecord[coords]}
           inPlay={this.props.livesRecord[coords] && this.props.playMode}
+          onClick={theTileClick}
           key={tileKey}
         />
       ));
@@ -33,7 +44,7 @@ var Grid = React.createClass({
     return (
       <div
         key={['row-', y].join('')}
-        className="grid-preview__row clearfix">
+        className="grid__row clearfix">
         {tiles}
       </div>
     );

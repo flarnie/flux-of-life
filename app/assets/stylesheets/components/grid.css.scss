@@ -1,6 +1,7 @@
-.grid {
-  position: absolute;
-  top: 0;
-  right: 0;
+.grid--size-medium {
+  width: $grid-side-width;
+}
+
+.grid--size-tiny {
   width: $grid-side-width-tiny;
 }
