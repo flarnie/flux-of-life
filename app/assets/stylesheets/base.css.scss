@@ -15,18 +15,28 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 html,
 body {
   background-color: $white-base;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
   height: 100%;
 }
 
-p {font-size:100%;}
-h1 {font-size:160%;}
-h2 {font-size:150%;}
-h3 {font-size:140%;}
-h4 {font-size:120%;}
+p {font-size: 100%;}
+h1 {font-size: 160%;}
+h2 {font-size: 150%;}
+h3 {font-size: 140%;}
+h4 {font-size: 120%;}
 
 // HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block;
 }
 
@@ -36,8 +46,8 @@ del {
 
 .clearfix {
   &:after {
-    content: "";
     clear: both;
+    content: '';
     display: table;
   }
 }
@@ -64,20 +74,20 @@ del {
 // links
 
 :link {
-    color: $green-dark;
+  color: $green-dark;
 }
 
 // visited link */
 a:visited {
-    color: $green-dark;
+  color: $green-dark;
 }
 
 // mouse over link */
 a:hover {
-    color: $blue-base;
+  color: $blue-base;
 }
 
 // selected link */
 a:active {
-    color: $blue-base;
+  color: $blue-base;
 }
